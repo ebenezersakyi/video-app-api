@@ -15,7 +15,7 @@ router.post("/generate-story", async (req, res) => {
       history: [],
     });
 
-    const msg = `Write a detailed story based on the provided movie details: ${JSON.stringify(
+    const msg = `Write a comprehensive, detailed story based on the provided movie details: ${JSON.stringify(
       movieDetails
     )}. Write it in plain text and no formating and no sections.`;
 
@@ -37,22 +37,6 @@ router.post("/generate-audio", async (req, res) => {
   const { text } = req.body;
 
   try {
-    // const textData = {
-    //   audioConfig: {
-    //     audioEncoding: "LINEAR16",
-    //     effectsProfileId: ["small-bluetooth-speaker-class-device"],
-    //     pitch: 0,
-    //     speakingRate: 1,
-    //   },
-    //   input: {
-    //     text: text,
-    //   },
-    //   voice: {
-    //     languageCode: "en-US",
-    //     name: "en-US-Journey-F",
-    //   },
-    // };
-
     const response = await axios.post(
       `https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=${process.env.GOOGLE_CLOUD_API_KEY}`,
       {
