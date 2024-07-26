@@ -72,7 +72,7 @@ router.post("/generate-audio", async (req, res) => {
       }
     );
 
-    const data = await response.json();
+    const data = await response.data;
 
     return res.status(200).json({
       success: true,
