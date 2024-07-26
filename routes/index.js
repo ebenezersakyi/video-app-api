@@ -33,4 +33,47 @@ router.post("/generate-story", async (req, res) => {
   }
 });
 
+router.post("/generate-audio", async (req, res) => {
+  const { text } = req.body;
+
+  try {
+    const textData = {
+      audioConfig: {
+        audioEncoding: "LINEAR16",
+        effectsProfileId: ["small-bluetooth-speaker-class-device"],
+        pitch: 0,
+        speakingRate: 1,
+      },
+      input: {
+        text: text,
+      },
+      voice: {
+        languageCode: "en-US",
+        name: "en-US-Journey-F",
+      },
+    };
+
+    const res = await fetch(
+      `https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=${process.env.GOOGLE_CLOUD_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(textData),
+      }
+    );
+
+    const data = await res.json();
+
+    return res.status(200).json({
+      success: true,
+      audioContent: data.audioContent,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 module.exports = router;
