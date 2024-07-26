@@ -53,7 +53,7 @@ router.post("/generate-audio", async (req, res) => {
       },
     };
 
-    const res = await fetch(
+    const response = await fetch(
       `https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=${process.env.GOOGLE_CLOUD_API_KEY}`,
       {
         method: "POST",
@@ -64,11 +64,11 @@ router.post("/generate-audio", async (req, res) => {
       }
     );
 
-    const data = await res.json();
+    const data = await response.json();
 
     return res.status(200).json({
       success: true,
-      audioContent: data.audioContent,
+      audioContent: data?.audioContent,
     });
   } catch (error) {
     console.error(error);
