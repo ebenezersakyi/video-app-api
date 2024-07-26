@@ -37,30 +37,38 @@ router.post("/generate-audio", async (req, res) => {
   const { text } = req.body;
 
   try {
-    const textData = {
-      audioConfig: {
-        audioEncoding: "LINEAR16",
-        effectsProfileId: ["small-bluetooth-speaker-class-device"],
-        pitch: 0,
-        speakingRate: 1,
-      },
-      input: {
-        text: text,
-      },
-      voice: {
-        languageCode: "en-US",
-        name: "en-US-Journey-F",
-      },
-    };
+    // const textData = {
+    //   audioConfig: {
+    //     audioEncoding: "LINEAR16",
+    //     effectsProfileId: ["small-bluetooth-speaker-class-device"],
+    //     pitch: 0,
+    //     speakingRate: 1,
+    //   },
+    //   input: {
+    //     text: text,
+    //   },
+    //   voice: {
+    //     languageCode: "en-US",
+    //     name: "en-US-Journey-F",
+    //   },
+    // };
 
-    const response = await fetch(
+    const response = await axios.post(
       `https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=${process.env.GOOGLE_CLOUD_API_KEY}`,
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+        audioConfig: {
+          audioEncoding: "LINEAR16",
+          effectsProfileId: ["small-bluetooth-speaker-class-device"],
+          pitch: 0,
+          speakingRate: 1,
         },
-        body: JSON.stringify(textData),
+        input: {
+          text: text,
+        },
+        voice: {
+          languageCode: "en-US",
+          name: "en-US-Journey-F",
+        },
       }
     );
 
