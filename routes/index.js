@@ -15,7 +15,7 @@ router.post("/generate-story", async (req, res) => {
       history: [],
     });
 
-    const msg = `Write a comprehensive, detailed story based on the provided movie details: ${JSON.stringify(
+    const msg = `Write a detailed story based on the provided movie details: ${JSON.stringify(
       movieDetails
     )}. Write it in plain text and no formating and no sections.`;
 
