@@ -19,8 +19,8 @@ This is a Node.js Express server that provides endpoints for generating a story 
 1. Clone the repository:
 
    ```bash
-   git clone <https://github.com/ebenezersakyi/video-app-api.git>
-   cd <video-app-api>
+   git clone https://github.com/ebenezersakyi/video-app-api.git
+   cd video-app-api
    ```
 
 2. Install dependencies:
